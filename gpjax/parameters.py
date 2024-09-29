@@ -65,7 +65,7 @@ def transform(
     return nnx.State.merge(transformed_gp_params, *other_params)
 
 
-class Parameter(nnx.Variable[T]):
+class Parameter(nnx.Param[T]):
     """Parameter base class.
 
     All trainable parameters in GPJax should inherit from this class.
