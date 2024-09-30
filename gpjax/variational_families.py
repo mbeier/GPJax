@@ -143,10 +143,10 @@ class VariationalGaussian(AbstractVariationalGaussian[L]):
         super().__init__(posterior, inducing_inputs, jitter)
     
         self.variational_mean = Real(variational_mean) \
-        if variational_mean else Real(jnp.zeros((self.num_inducing, 1)))
+        if variational_mean is not None else Real(jnp.zeros((self.num_inducing, 1)))
         
         self.variational_root_covariance = LowerTriangular(variational_root_covariance) \
-            if variational_root_covariance else LowerTriangular(jnp.eye(self.num_inducing))
+            if variational_root_covariance is not None else LowerTriangular(jnp.eye(self.num_inducing))
 
     def prior_kl(self) -> ScalarFloat:
         r"""Compute the prior KL divergence.
