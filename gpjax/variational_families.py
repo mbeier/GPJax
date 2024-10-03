@@ -180,7 +180,7 @@ class VariationalGaussian(AbstractVariationalGaussian[L]):
         Kzz = kernel.gram(z)
         Kzz = PSD(Kzz + I_like(Kzz) * self.jitter)
 
-        sqrt = Triangular(sqrt)
+        sqrt = Triangular(sqrt+ I_like(sqrt) * self.jitter)
         S = sqrt @ sqrt.T
 
         qu = GaussianDistribution(loc=jnp.atleast_1d(mu.squeeze()), scale=S)
