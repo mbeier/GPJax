@@ -79,8 +79,8 @@ class GaussianDistribution(tfd.Distribution):
         if scale is None:
             scale = Identity(shape=(num_dims, num_dims), dtype=loc.dtype)
 
-        self.loc = loc
-        self.scale = cola.PSD(scale)
+        self.loc = loc.real
+        self.scale = cola.PSD(scale.real)
 
     def mean(self) -> Float[Array, " N"]:
         r"""Calculates the mean."""
